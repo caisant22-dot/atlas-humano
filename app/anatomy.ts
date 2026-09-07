@@ -20,17 +20,26 @@ export interface Part {id:string;name:string;conceptId:string;system:SystemId;ch
 export interface Concept {id:string;name:string;elements:string[]}
 export interface Atlas {version:string;sex?:'male';source?:string;scope?:string;parts:Part[];concepts:Concept[];chunks:{url:string;bytes:number;gzip?:string;gzipBytes?:number}[];triangles:number}
 export type View = 'three-quarter'|'front'|'back'|'side';
-export interface SceneState {inspectorOpen?:boolean;explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number}
+export interface SceneState {inspectorOpen?:boolean;explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number;labelsVisible?:boolean;quizHighlight?:string[]}
 export const DEFAULT_VISIBLE:SystemId[] = ['cardiac','sensory','skeletal','muscular','arterial','venous','nervous','respiratory','digestive','urinary','lymphatic','endocrine','reproductive','connective'];
 export const EXPLANATIONS:Record<string,string> = {
- 'heart':'Uma bomba muscular no tórax. Seu lado direito envia sangue para os pulmões; seu lado esquerdo envia sangue pela circulação sistêmica.',
- 'liver':'Um órgão grande abaixo do lado direito do diafragma. Ele processa nutrientes absorvidos, produz bile e sintetiza muitas proteínas transportadas pelo sangue.',
- 'brain':'O órgão central do sistema nervoso. Suas regiões interconectadas sustentam a percepção, o movimento, a memória, a linguagem e a regulação das funções corporais.',
- 'stomach':'Uma câmara muscular entre o esôfago e o intestino delgado. Armazena e mistura o alimento com ácido e enzimas antes de liberá-lo no duodeno.',
- 'spleen':'Um órgão linfoide no abdômen superior esquerdo. Filtra o sangue, remove células sanguíneas envelhecidas e participa das respostas imunológicas.',
- 'pancreas':'Um órgão abdominal com funções digestiva e endócrina. Fornece enzimas ao intestino delgado e libera hormônios como insulina e glucagon.',
- 'urinary bladder':'Um reservatório muscular na pelve que armazena a urina que chega dos rins pelos ureteres.',
- 'trachea':'A via aérea principal que conecta a laringe aos brônquios. Seus anéis de cartilagem mantêm a via aérea aberta durante a respiração.',
- 'diaphragm':'Um músculo amplo que separa o tórax do abdômen. Quando se contrai, aumenta o volume torácico e ajuda a puxar o ar para os pulmões.',
+ 'coração':'Uma bomba muscular no tórax. Seu lado direito envia sangue para os pulmões; seu lado esquerdo envia sangue pela circulação sistêmica.',
+ 'fígado':'Um órgão grande abaixo do lado direito do diafragma. Ele processa nutrientes absorvidos, produz bile e sintetiza muitas proteínas transportadas pelo sangue.',
+ 'cérebro':'O órgão central do sistema nervoso. Suas regiões interconectadas sustentam a percepção, o movimento, a memória, a linguagem e a regulação das funções corporais.',
+ 'estômago':'Uma câmara muscular entre o esôfago e o intestino delgado. Armazena e mistura o alimento com ácido e enzimas antes de liberá-lo no duodeno.',
+ 'baço':'Um órgão linfoide no abdômen superior esquerdo. Filtra o sangue, remove células sanguíneas envelhecidas e participa das respostas imunológicas.',
+ 'pâncreas':'Um órgão abdominal com funções digestiva e endócrina. Fornece enzimas ao intestino delgado e libera hormônios como insulina e glucagon.',
+ 'bexiga urinária':'Um reservatório muscular na pelve que armazena a urina que chega dos rins pelos ureteres.',
+ 'traqueia':'A via aérea principal que conecta a laringe aos brônquios. Seus anéis de cartilagem mantêm a via aérea aberta durante a respiração.',
+ 'diafragma':'Um músculo amplo que separa o tórax do abdômen. Quando se contrai, aumenta o volume torácico e ajuda a puxar o ar para os pulmões.',
+ 'pulmão direito':'O pulmão maior, com três lobos. Recebe sangue pela artéria pulmonar direita e realiza a troca gasosa nos alvéolos.',
+ 'pulmão esquerdo':'O pulmão menor, com dois lobos. Tem uma incisura cardíaca para acomodar o coração.',
+ 'fêmur':'O osso mais longo e forte do corpo humano. Conecta o quadril ao joelho e suporta grande parte do peso corporal.',
+ 'tíbia':'O osso principal da perna, localizado medialmente. Suporta o peso corporal entre o joelho e o tornozelo.',
+ 'úmero':'O osso do braço, entre o ombro e o cotovelo. Serve de inserção para diversos músculos do membro superior.',
+ 'escápula':'Osso triangular e plano na parte posterior do ombro. Serve de ancoragem para músculos que movem o braço.',
+ 'clavícula':'Osso longo que conecta o esterno à escápula. Transmite forças do membro superior para o esqueleto axial.',
+ 'aorta':'A maior artéria do corpo. Recebe sangue do ventrículo esquerdo e o distribui para todo o organismo.',
+ 'rim':'Órgão par que filtra o sangue, regula o equilíbrio de líquidos e eletrólitos, e produz urina.',
 };
 export function explanation(name:string,system:SystemId){return EXPLANATIONS[name.toLowerCase()] ?? SYSTEMS.find(s=>s.id===system)?.description ?? '';}
